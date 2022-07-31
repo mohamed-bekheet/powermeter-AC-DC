@@ -1,17 +1,17 @@
 #include <Arduino.h>
-//#include "LiquidCrystal.h"
+#include "LiquidCrystal.h"
 
-//#include <WiFi.h>
-//#include "API.h"
-//#include <ArduinoJson.h>
+#include <WiFi.h>
+#include "API.h"
+#include <ArduinoJson.h>
 #include "measureing.h"
 
 //LCD 
-//LiquidCrystal lcd();
+LiquidCrystal lcd();
 
 
-const char* ssid = "mohamed_Laptop";
-const char* password = "mohamed202333";
+const char* ssid = "ROBe2-power-meter";
+const char* password = "ROBe2-power-meter";
 
 //Your Domain name with URL path or IP address with path
 #define ch1_volt 26
@@ -35,7 +35,7 @@ void setup() {
   Serial.begin(115200);
   delay(1000);
   // connect to WiFi
-  /*
+  
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
@@ -49,19 +49,19 @@ void setup() {
   Serial.println("");
   Serial.print("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
-*/
+
   // get device MacAddress
   Serial.print(" MAC address ");
-  //mac_add= WiFi.macAddress();
+  mac_add= WiFi.macAddress();
   Serial.println(mac_add);
   
-  //registerDevice(mac_add);
-  //sendDeviceReadings(mac_add,1.011,50);
+  registerDevice(mac_add);
+  sendDeviceReadings(mac_add,1.011,50);
 
   
 
   analogReadResolution(12);
-  //analogSetAttenuation(ADC_2_5db);
+  analogSetAttenuation(ADC_2_5db);
 }
 
 //hi from laptop
@@ -74,7 +74,7 @@ Serial.println(current);
 Serial.print("v:");
 Serial.println(voltage);
 delay(3000);
-/*
+
 currT = millis();
 
 if(currT-prevT >= measuring_timer){
@@ -99,5 +99,5 @@ Serial.println(energy);
   prevT=currT;
 }
 
-*/
+
 }
